@@ -1,0 +1,25 @@
+<!-- views/login.ejs -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link ref="stylesheet" type="text/css" href="dist/snackbar.min.css" /> 
+    <script src="dist/snackbar.min.js"></script>
+</head>
+<body>
+    <header>
+    <img src="/logo.png" alt="logotype" width="150">
+    </header>
+    <div id="login-form">
+    <form action="/login" method="post">
+        <input type="text" name="username" placeholder="Username" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <button type="submit">Login</button>
+        <a id="register-button" href="/register">Register</a>
+    </form>
+    </div>
+    <script src="/js/script.js"></script>
+</body>
+</html>

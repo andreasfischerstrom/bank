@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link ref="stylesheet" type="text/css" href="dist/snackbar.min.css" /> 
+</head>
+<body>
+<header>
+    <img src="/logo.png" alt="logotype" width="150">
+</header>
+
+<div id="dashboard">
+    <h1>Välkommen tillbaka, <%= username %></h1>
+
+
+
+
+<!-- Portfölj -->
+<h2>Portföljens investeringar</h2>
+<div class="investments" id="grouped-investments">
+    <% investments.forEach(investment => { %>
+        <div class="card">
+            <h3><%= investment.symbol %></h3>
+            <p class="current-value">$<%= investment.currentValue.toFixed(2) %></p>
+            <p class="percentage-change"><%= investment.percentageChange.toFixed(2) %>%</p>
+            <div class="flex-container">
+            <p><b>Aktier</b><br><%= investment.quantity %></p>
+            <p><b>Köpta för</b><br>$<%= investment.originalValue.toFixed(2) %></p>
+            </div>
+        </div>
+    <% }); %>
+</div>
+
+<h2>Mina investeringar</h2>
+<!-- Individuella köp -->
+<div class="investments" id="individual-investments">
+    <% individualInvestments.forEach(investment => { %>
+        <div class="card">
+            <h3><%= investment.symbol %></h3>
+            <p class="current-value">$<%= investment.currentValue.toFixed(2) %></p>
+            <p class="percentage-change"><%= investment.percentageChange.toFixed(2) %>%</p>
+            <div class="flex-container">
+            <p><b>Aktier</b><br><%= investment.quantity %> shares</p>
+            <p><b>Köpta för</b><br>$<%= investment.originalValue.toFixed(2) %></p>
+            </div>
+        </div>
+    <% }); %>
+</div>
+
+</div>
+
+
+<div id="add-investment">
+
+<form action="/invest" method="post">
+    <div class="flex-container">
+
+    <input class="invest-input" type="text" id="stockSearch" name="symbol" placeholder="Sök efter en aktie" required>
+    <ul id="autocompleteList"></ul>
+    <input class="invest-input" type="number" name="quantity" placeholder="Antal" required>
+    <input class="invest-input" type="number" name="price" placeholder="Pris" step="0.01" required>
+    <button class="main-search" type="submit">Registrera</button>
+    </div>
+</form>
+
+</div>
+<footer>
+<a href="/logout">Logga ut</a>
+</footer>
+<script src="/js/script.js"></script>
+<div id="goal" class="investment-goal">
+    <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+    </div>
+    <div class="goal-details">
+        <span><span id="progressText">0%</span></span>
+        <span>av $10,000</span>
+    </div>
+</div>
+<div id="showGoal" onclick="toggleGoal()">
+    <img src="goal.png" width="40">
+</div>
+</body>
+</html>
